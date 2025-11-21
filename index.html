@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>幽影櫻的MC伺服器 | 幽影櫻的minecraft服務器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Noto Sans TC"', 'sans-serif'],
+              tech: ['"Orbitron"', 'sans-serif'],
+            },
+            colors: {
+              sakura: {
+                light: '#FFD1DC',
+                DEFAULT: '#FFB7C5',
+                dark: '#E47A9D',
+                glow: '#FF9EAE'
+              },
+              void: {
+                bg: '#0f0f13',
+                card: '#1a1a20',
+                border: '#2a2a35'
+              },
+              mc: {
+                green: '#52A636',
+              }
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shine': 'shine 2s linear infinite',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'slide-up': 'slideUp 0.5s ease-out forwards',
+              'spin-slow': 'spin 6s linear infinite',
+              'visualizer': 'visualizer 0.8s ease-in-out infinite alternate',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              shine: {
+                '0%': { backgroundPosition: '200% center' },
+                '100%': { backgroundPosition: '-200% center' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              visualizer: {
+                '0%': { height: '20%' },
+                '100%': { height: '100%' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+<style>
+  body {
+    background-color: #0f0f13;
+    color: #ffffff;
+  }
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0f0f13;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a35;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFB7C5;
+  }
+  
+  .glass-panel {
+    background: rgba(26, 26, 32, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 183, 197, 0.1);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFB7C5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  .page-transition-exit {
+    opacity: 1;
+  }
+  .page-transition-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="antialiased overflow-x-hidden selection:bg-sakura selection:text-void-bg">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
