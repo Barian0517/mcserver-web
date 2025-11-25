@@ -33,6 +33,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li><button onClick={() => onNavigate('worlds')} className="hover:text-sakura transition-colors hover:pl-1 duration-300 text-left w-full">多元維度</button></li>
               <li><button onClick={() => onNavigate('mods')} className="hover:text-sakura transition-colors hover:pl-1 duration-300 text-left w-full">模組清單</button></li>
               <li><button onClick={() => onNavigate('commands')} className="hover:text-sakura transition-colors hover:pl-1 duration-300 text-left w-full">常用指令</button></li>
+              <li><button onClick={() => onNavigate('about')} className="hover:text-sakura transition-colors hover:pl-1 duration-300 text-left w-full">關於我們</button></li>
             </ul>
           </div>
 

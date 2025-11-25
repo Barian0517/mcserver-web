@@ -25,6 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     { name: '多元維度', id: 'worlds' },
     { name: '模組列表', id: 'mods' },
     { name: '指令大全', id: 'commands' },
+    { name: '關於我們', id: 'about' },
   ];
 
   return (

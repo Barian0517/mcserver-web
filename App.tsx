@@ -6,11 +6,12 @@ import Worlds from './components/Worlds';
 import Mods from './components/Mods';
 import Commands from './components/Commands';
 import JoinGuide from './components/JoinGuide';
+import About from './components/About';
 import Footer from './components/Footer';
 import FloatingMenu from './components/FloatingMenu';
 import MusicPlayer from './components/MusicPlayer';
 
-export type PageType = 'home' | 'worlds' | 'mods' | 'commands' | 'join';
+export type PageType = 'home' | 'worlds' | 'mods' | 'commands' | 'join' | 'about';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
@@ -37,6 +38,8 @@ function App() {
         return <Commands />;
       case 'join':
         return <JoinGuide />;
+      case 'about':
+        return <About />;
       default:
         return <Home onNavigate={handleNavigate} />;
     }
