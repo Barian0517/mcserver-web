@@ -114,7 +114,7 @@ const JoinGuide: React.FC = () => {
                                     <div>
                                         <p className="mb-2">於 <span className="text-white font-bold">啟動前執行命令</span> 中填入：</p>
                                         <code className="block bg-black/50 p-4 rounded-lg border border-white/10 font-mono text-green-400 text-sm break-all select-all shadow-inner">
-                                            "{`{verpath}`}mainGUI.exe"
+                                            "{`{verpath}`}mainGUI.exe" --auto
                                         </code>
                                     </div>
                                     <p className="text-xs text-gray-500 flex items-center gap-1.5">
