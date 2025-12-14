@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ExternalLink, AlertTriangle, Wifi, Download, BookOpen, CheckCircle2, Copy, Check } from 'lucide-react';
+import { AlertTriangle, Download, BookOpen, CheckCircle2, Copy, Check, Settings } from 'lucide-react';
 import { SERVER_IP } from '../constants';
 
 const JoinGuide: React.FC = () => {
@@ -27,33 +27,103 @@ const JoinGuide: React.FC = () => {
                 </p>
              </div>
 
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+             {/* Steps Container - Changed to vertical layout */}
+             <div className="flex flex-col gap-8 mb-12 max-w-4xl mx-auto">
+                
                 {/* Step 1 */}
                 <div className="bg-void-card border border-white/10 rounded-2xl p-8 hover:border-sakura/30 transition-all">
                    <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-full bg-sakura/10 text-sakura flex items-center justify-center font-bold text-xl border border-sakura/20 shrink-0">
                          1
                       </div>
-                      <div>
-                         <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
-                            下載啟動器與更新器
+                      <div className="w-full">
+                         <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            下載啟動器與安裝 (以 PCL 為例)
                             <Download size={18} className="text-gray-500" />
                          </h3>
-                         <p className="text-gray-400 leading-relaxed mb-4">
-                            請前往下方的 <span className="text-sakura font-bold">更新器下載中心</span>。
-                            下載模組更新器。將其放在版本資料夾下啟動就能自動更新了<br />
-                            我們推薦使用PCL啟動器或prism啟動器，該啟動器允許使用者設定啟動腳本讓遊戲器動時執行自定義命令(用於運行更新器)
-                         </p>
-                         <ul className="space-y-2 text-sm text-gray-500">
-                            <li className="flex items-center gap-2">
-                               <CheckCircle2 size={14} className="text-green-500" />
-                               確認 Java 版本為 17 或以上
-                            </li>
-                            <li className="flex items-center gap-2">
-                               <CheckCircle2 size={14} className="text-green-500" />
-                               分配記憶體建議 8GB+
-                            </li>
-                         </ul>
+                         
+                         <div className="space-y-6">
+                            {/* Basic Steps */}
+                            <div className="space-y-4">
+                                <div className="flex flex-col md:flex-row md:items-center gap-4 text-gray-300 bg-white/[0.02] p-3 rounded-xl border border-white/5">
+                                    <div className="flex items-center gap-4">
+                                        <span className="font-bold text-sakura bg-sakura/10 px-3 py-1 rounded-lg text-sm whitespace-nowrap">Step 1</span>
+                                        <span>下載 PCL 啟動器</span>
+                                    </div>
+                                    <a 
+                                        href="https://raw.githubusercontent.com/Meloong-Git/PCL/refs/heads/main/%E6%9C%80%E6%96%B0%E6%AD%A3%E5%BC%8F%E7%89%88.zip" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="ml-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-sakura hover:bg-white text-void-bg font-bold rounded-lg transition-all shadow-[0_0_15px_rgba(255,183,197,0.3)] hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] text-sm whitespace-nowrap"
+                                    >
+                                        <Download size={16} />
+                                        下載 PCL
+                                    </a>
+                                </div>
+                                <div className="flex items-center gap-4 text-gray-300 bg-white/[0.02] p-3 rounded-xl border border-white/5">
+                                    <span className="font-bold text-sakura bg-sakura/10 px-3 py-1 rounded-lg text-sm whitespace-nowrap">Step 2</span>
+                                    <span>安裝 Forge 1.20.1 版本</span>
+                                </div>
+                                <div className="flex flex-col md:flex-row md:items-center gap-4 text-gray-300 bg-white/[0.02] p-3 rounded-xl border border-white/5">
+                                    <div className="flex items-center gap-4">
+                                        <span className="font-bold text-sakura bg-sakura/10 px-3 py-1 rounded-lg text-sm whitespace-nowrap">Step 3</span>
+                                        <span>下載模組更新器放入該 Forge 版本資料夾中</span>
+                                    </div>
+                                    <a 
+                                        href="http://modapi.barian.moe/clientupdate" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="ml-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-sakura hover:bg-white text-void-bg font-bold rounded-lg transition-all shadow-[0_0_15px_rgba(255,183,197,0.3)] hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] text-sm whitespace-nowrap"
+                                    >
+                                        <Download size={16} />
+                                        下載更新器
+                                    </a>
+                                </div>
+                                <div className="flex items-center gap-4 text-gray-300 bg-white/[0.02] p-3 rounded-xl border border-white/5">
+                                    <span className="font-bold text-sakura bg-sakura/10 px-3 py-1 rounded-lg text-sm whitespace-nowrap">Step 4</span>
+                                    <span>運行更新器</span>
+                                </div>
+                            </div>
+
+                             {/* RAM Warning */}
+                             <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 flex items-start gap-3">
+                                <AlertTriangle className="text-red-400 shrink-0 mt-0.5" size={18} />
+                                <div>
+                                    <h4 className="font-bold text-red-200 text-sm mb-1">重要設定：記憶體分配</h4>
+                                    <p className="text-red-200/70 text-sm">
+                                        請務必在啟動器設定中為遊戲分配 <span className="font-bold text-white">至少 8GB (8192MB)</span> 記憶體，否則遊戲將無法正常啟動或頻繁崩潰。
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Advanced Usage */}
+                            <div className="bg-black/20 border border-white/5 rounded-xl p-6">
+                                <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-sm uppercase tracking-wider">
+                                    <Settings size={16} className="text-sakura" />
+                                    進階用法：設定自動更新(PCL)
+                                </h4>
+                                <div className="text-gray-400 text-sm space-y-4">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span>進入</span>
+                                        <span className="text-white font-bold bg-white/10 px-2 py-1 rounded text-xs">版本設置</span> 
+                                        <span className="text-gray-600">→</span> 
+                                        <span className="text-white font-bold bg-white/10 px-2 py-1 rounded text-xs">設置</span> 
+                                        <span className="text-gray-600">→</span> 
+                                        <span className="text-white font-bold bg-white/10 px-2 py-1 rounded text-xs">高級選項</span>
+                                    </div>
+                                    <div>
+                                        <p className="mb-2">於 <span className="text-white font-bold">啟動前執行命令</span> 中填入：</p>
+                                        <code className="block bg-black/50 p-4 rounded-lg border border-white/10 font-mono text-green-400 text-sm break-all select-all shadow-inner">
+                                            "{`{verpath}`}mainGUI.exe"
+                                        </code>
+                                    </div>
+                                    <p className="text-xs text-gray-500 flex items-center gap-1.5">
+                                        <CheckCircle2 size={12} className="text-green-500" />
+                                        設定後，啟動器將在每次啟動遊戲前自動運行更新腳本。
+                                    </p>
+                                </div>
+                            </div>
+                         </div>
                       </div>
                    </div>
                 </div>
@@ -101,71 +171,6 @@ const JoinGuide: React.FC = () => {
                    </div>
                 </div>
              </div>
-          </div>
-
-          {/* Embedded Download Page */}
-          <div className="h-[800px]">
-              <div className="flex items-center gap-4 mb-4">
-                  <div className="h-px flex-1 bg-white/10"></div>
-                  <span className="text-sakura font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-                      <Download size={16} className="animate-bounce" />
-                      模組下載中心
-                  </span>
-                  <div className="h-px flex-1 bg-white/10"></div>
-              </div>
-
-              <div className="bg-void-card border border-white/10 rounded-2xl overflow-hidden h-full shadow-2xl flex flex-col relative group ring-1 ring-white/5">
-                  {/* Header Bar */}
-                  <div className="p-4 border-b border-white/5 bg-[#151518] flex items-center justify-between shrink-0">
-                    <div className="flex items-center gap-3">
-                        <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                        <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                        <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                        <div className="ml-4 flex items-center gap-2 text-gray-400 text-sm font-mono">
-                            <Wifi size={14} className="text-sakura animate-pulse" />
-                            modapi.barian.moe
-                        </div>
-                    </div>
-                    <a href="http://modapi.barian.moe/" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded bg-white/5 hover:bg-sakura hover:text-void-bg text-sakura text-sm flex items-center gap-2 transition-all">
-                        <span className="font-bold">在新視窗開啟</span>
-                        <ExternalLink size={14} />
-                    </a>
-                  </div>
-
-                  {/* Iframe Container */}
-                  <div className="flex-1 relative bg-white">
-                      <iframe
-                          src="http://modapi.barian.moe/"
-                          className="w-full h-full border-0 block"
-                          title="Download Center"
-                          sandbox="allow-scripts allow-same-origin allow-forms"
-                      />
-                      
-                      {/* Safety Overlay for Mixed Content (HTTP vs HTTPS) */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-void-card/95 backdrop-blur-lg p-6 border-t border-sakura/30 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 opacity-100 transition-opacity z-10">
-                          <div className="flex items-start gap-4">
-                              <div className="p-3 rounded-full bg-yellow-500/10 border border-yellow-500/30 shrink-0">
-                                  <AlertTriangle className="text-yellow-500" size={24} />
-                              </div>
-                              <div>
-                                  <h3 className="text-white font-bold text-lg mb-1">無法顯示下載頁面？</h3>
-                                  <p className="text-gray-400 text-sm max-w-md">
-                                      由於下載中心使用 HTTP 協議，您的瀏覽器可能會阻擋嵌入內容。若無法瀏覽或下載請點擊按鈕前往下載頁面。
-                                  </p>
-                              </div>
-                          </div>
-                          <a
-                              href="http://modapi.barian.moe/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="whitespace-nowrap px-8 py-3 bg-sakura hover:bg-white text-void-bg font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(255,183,197,0.4)] hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] flex items-center gap-2"
-                          >
-                              <Download size={18} />
-                              前往下載中心
-                          </a>
-                      </div>
-                  </div>
-              </div>
           </div>
        </div>
     </div>
