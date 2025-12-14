@@ -63,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               >
                  <div className="absolute inset-0 bg-gradient-to-r from-sakura via-pink-400 to-sakura animate-shine bg-[length:200%_100%]"></div>
                  <div className="relative z-10 flex items-center gap-2 text-void-bg group-hover:text-white transition-colors">
-                    <span>立即加入</span>
+                    <span>加入服務器</span>
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                  </div>
               </button>

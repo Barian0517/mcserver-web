@@ -136,15 +136,23 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                           </div>
                       </div>
                       
-                      <div className="w-full md:w-auto">
+                      <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4">
                            <button 
                               onClick={copyToClipboard}
-                              className="w-full md:w-auto bg-black/40 hover:bg-sakura/20 border border-white/10 hover:border-sakura/50 rounded-xl py-4 px-6 flex items-center justify-between gap-4 group/btn transition-all duration-300"
+                              className="flex-1 md:flex-none bg-black/40 hover:bg-sakura/20 border border-white/10 hover:border-sakura/50 rounded-xl py-4 px-6 flex items-center justify-between gap-4 group/btn transition-all duration-300"
                           >
                               <span className="font-mono text-lg text-gray-200 group-hover/btn:text-white tracking-wide select-all">
                                   {SERVER_IP}
                               </span>
                               {copied ? <Check className="text-green-400 w-5 h-5" /> : <Copy className="text-gray-500 group-hover/btn:text-sakura w-5 h-5" />}
+                          </button>
+                          
+                           <button 
+                              onClick={() => onNavigate('join')}
+                              className="flex-1 md:flex-none bg-sakura hover:bg-white text-void-bg font-bold text-lg rounded-xl py-4 px-8 flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_15px_rgba(255,183,197,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] hover:-translate-y-0.5"
+                          >
+                              <span>加入服務器</span>
+                              <ArrowRight size={20} />
                           </button>
                       </div>
                   </div>

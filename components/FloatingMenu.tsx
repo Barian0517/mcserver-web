@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Home, ArrowUp, Search, Menu, X } from 'lucide-react';
+import { Home, ArrowUp, LogIn, Menu, X } from 'lucide-react';
 import { PageType } from '../App';
 
 interface FloatingMenuProps {
@@ -15,12 +16,12 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onNavigate }) => {
 
   const menuItems = [
     {
-      id: 'search',
-      icon: <Search size={20} />,
-      label: '搜尋模組',
-      onClick: () => onNavigate('mods'),
-      color: 'text-blue-300',
-      bg: 'hover:bg-blue-500/20'
+      id: 'join',
+      icon: <LogIn size={20} />,
+      label: '加入教學',
+      onClick: () => onNavigate('join'),
+      color: 'text-sakura',
+      bg: 'hover:bg-sakura/20'
     },
     {
       id: 'top',
