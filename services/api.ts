@@ -79,19 +79,29 @@ export const getZipDownloadUrl = (folder: FolderType, subFolder?: string): strin
   return `${API_BASE_URL}/${folder}/zip`;
 };
 
-export const fetchServerStatus = async (serverName?: string): Promise<ServerStatus | null> => {
-  try {
-    // If serverName is provided, use it, otherwise default to the main one
-    const url = serverName 
-      ? `${API_BASE_URL}/ping/${serverName}?type=json`
-      : `${API_BASE_URL}/ping?type=json`;
+export const fetchServerStatus = async (): Promise<ServerStatus | null> => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 25000);
 
-    const response = await fetch(url);
-    // Note: The API might return 500 with JSON error details, so we verify content type or catch parsing errors
+  try {
+    // Construct the URL directly as requested: /ping/?type=json
+    const url = `${API_BASE_URL}/ping/?type=json`;
+
+    const response = await fetch(url, { signal: controller.signal });
+    
+    if (!response.ok) {
+        return { error: `HTTP ${response.status}` };
+    }
+    
     const data = await response.json();
     return data as ServerStatus;
-  } catch (error) {
-    console.error("Failed to fetch server status:", error);
-    return null;
+  } catch (error: any) {
+    if (error.name === 'AbortError') {
+      return { error: "Ping Timeout (25s)" };
+    }
+    console.warn("Server status fetch failed:", error.message || error);
+    return { error: "Connection Failed" };
+  } finally {
+    clearTimeout(timeoutId);
   }
 };

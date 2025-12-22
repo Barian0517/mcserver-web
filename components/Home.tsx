@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, Server, Sparkles, Map, Box, Terminal, ArrowRight, Loader2, Users } from 'lucide-react';
+import { Copy, Check, Server, Sparkles, Map, Box, Terminal, ArrowRight, Loader2, Users, RefreshCw } from 'lucide-react';
 import { SERVER_IP, SERVER_VERSION } from '../constants';
 import { PageType } from '../App';
 import { fetchServerStatus } from '../services/api';
@@ -15,16 +15,18 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [serverStatus, setServerStatus] = useState<ServerStatus | null>(null);
   const [loadingStatus, setLoadingStatus] = useState(true);
 
+  const getStatus = async () => {
+    setLoadingStatus(true);
+    // Removed SERVER_IP argument as requested by user to use generic endpoint
+    const status = await fetchServerStatus();
+    setServerStatus(status);
+    setLoadingStatus(false);
+  };
+
   useEffect(() => {
-    const getStatus = async () => {
-      setLoadingStatus(true);
-      const status = await fetchServerStatus();
-      setServerStatus(status);
-      setLoadingStatus(false);
-    };
     getStatus();
     
-    // Optional: Refresh every 60 seconds
+    // Refresh every 60 seconds
     const interval = setInterval(getStatus, 60000);
     return () => clearInterval(interval);
   }, []);
@@ -112,13 +114,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                                   {loadingStatus ? (
                                       <>
                                         <Loader2 size={14} className="text-gray-400 animate-spin" />
-                                        <span className="text-gray-400 font-mono text-sm">Checking status...</span>
+                                        <span className="text-gray-400 font-mono text-sm tracking-tight">正在取得狀態...</span>
                                       </>
-                                  ) : serverStatus?.error ? (
-                                      <>
+                                  ) : (serverStatus?.error || !serverStatus) ? (
+                                      <div className="flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] animate-pulse"></span>
-                                        <span className="text-red-400 font-mono text-sm">Offline (Maintenance)</span>
-                                      </>
+                                        <span className="text-red-400 font-mono text-sm font-bold">Offline ({serverStatus?.error || 'Unknown Error'})</span>
+                                        <button onClick={getStatus} className="p-1 hover:bg-white/10 rounded-full transition-colors text-gray-500 hover:text-white" title="重試">
+                                          <RefreshCw size={12} />
+                                        </button>
+                                      </div>
                                   ) : (
                                       <>
                                         <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_#4ade80] animate-pulse"></span>

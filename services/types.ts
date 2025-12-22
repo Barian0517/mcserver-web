@@ -89,7 +89,7 @@ export interface ServerVersion {
 }
 
 export interface ServerStatus {
-  description?: string;
+  description?: string | { text: string };
   players?: ServerPlayers;
   version?: ServerVersion;
   error?: string; // For error responses
